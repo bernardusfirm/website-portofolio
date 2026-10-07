@@ -145,21 +145,13 @@ INSERT INTO public.services (id, title, slug, description, deliverables, icon_na
 
 -- 9. Masukkan Pengaturan Situs
 DELETE FROM public.site_settings;
-INSERT INTO public.site_settings (id, site_name, site_title, meta_description, keywords, hero_badge, footer_text) VALUES (
+INSERT INTO public.site_settings (id, site_title, site_description, accent_color, social_links) VALUES (
   'settings-1',
-  NULL,
   'Bernardusfirman — Senior Graphic Designer & Art Director',
-  NULL,
-  ARRAY[]::TEXT[],
-  NULL,
-  NULL
-) ON CONFLICT (id) DO UPDATE SET
-  site_name = EXCLUDED.site_name,
-  site_title = EXCLUDED.site_title,
-  meta_description = EXCLUDED.meta_description,
-  keywords = EXCLUDED.keywords,
-  hero_badge = EXCLUDED.hero_badge,
-  footer_text = EXCLUDED.footer_text;
+  'Portfolio of Bernardusfirman. 8+ years crafting bespoke brand identities, tactile packaging, editorial design, and visual art direction.',
+  '#3682F6',
+  '{"behance":"https://behance.net/bernardusfirman","dribbble":"https://dribbble.com/bernardusfirman","instagram":"https://instagram.com/bernardusfirman","linkedin":"https://linkedin.com/in/bernardusfirman"}'::jsonb
+);
 
 
 -- 10. Pastikan hak akses terbuka untuk publik & admin

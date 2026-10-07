@@ -180,21 +180,13 @@ sql += servRows.join(',\n') + ';\n\n';
 if (initialSiteSettings) {
   sql += `-- 9. Masukkan Pengaturan Situs
 DELETE FROM public.site_settings;
-INSERT INTO public.site_settings (id, site_name, site_title, meta_description, keywords, hero_badge, footer_text) VALUES (
-  ${sqlEscape(initialSiteSettings.id || 'default-settings')},
-  ${sqlEscape(initialSiteSettings.site_name)},
+INSERT INTO public.site_settings (id, site_title, site_description, accent_color, social_links) VALUES (
+  ${sqlEscape(initialSiteSettings.id || 'settings-1')},
   ${sqlEscape(initialSiteSettings.site_title)},
-  ${sqlEscape(initialSiteSettings.meta_description)},
-  ${sqlArray(initialSiteSettings.keywords)},
-  ${sqlEscape(initialSiteSettings.hero_badge)},
-  ${sqlEscape(initialSiteSettings.footer_text)}
-) ON CONFLICT (id) DO UPDATE SET
-  site_name = EXCLUDED.site_name,
-  site_title = EXCLUDED.site_title,
-  meta_description = EXCLUDED.meta_description,
-  keywords = EXCLUDED.keywords,
-  hero_badge = EXCLUDED.hero_badge,
-  footer_text = EXCLUDED.footer_text;
+  ${sqlEscape(initialSiteSettings.site_description)},
+  ${sqlEscape(initialSiteSettings.accent_color)},
+  '${JSON.stringify(initialSiteSettings.social_links).replace(/'/g, "''")}'::jsonb
+);
 \n\n`;
 }
 
