@@ -129,8 +129,18 @@ CREATE TABLE IF NOT EXISTS public.contact_messages (
 );
 
 -- ==============================================================================
--- ROW LEVEL SECURITY (RLS) POLICIES
+-- ROW LEVEL SECURITY (RLS) POLICIES & PERMISSIONS
 -- ==============================================================================
+
+-- 0. Grant schema and table permissions
+GRANT USAGE ON SCHEMA public TO anon, authenticated, service_role;
+GRANT ALL ON ALL TABLES IN SCHEMA public TO anon, authenticated, service_role;
+GRANT ALL ON ALL SEQUENCES IN SCHEMA public TO anon, authenticated, service_role;
+GRANT ALL ON ALL ROUTINES IN SCHEMA public TO anon, authenticated, service_role;
+
+ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON TABLES TO anon, authenticated, service_role;
+ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON SEQUENCES TO anon, authenticated, service_role;
+ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON ROUTINES TO anon, authenticated, service_role;
 
 ALTER TABLE public.profiles ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.categories ENABLE ROW LEVEL SECURITY;
@@ -162,6 +172,7 @@ CREATE POLICY "Admin full access on experiences" ON public.experiences FOR ALL T
 CREATE POLICY "Admin full access on services" ON public.services FOR ALL TO authenticated USING (true) WITH CHECK (true);
 CREATE POLICY "Admin full access on site_settings" ON public.site_settings FOR ALL TO authenticated USING (true) WITH CHECK (true);
 CREATE POLICY "Admin full access on contact_messages" ON public.contact_messages FOR ALL TO authenticated USING (true) WITH CHECK (true);
+
 
 -- ==============================================================================
 -- STORAGE BUCKET CONFIGURATION
