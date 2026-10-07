@@ -1,0 +1,102 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #0A0A0A;
+  --secondary: #1A1A1A;
+  --card: #2D2D2D;
+  --foreground: #FFFFFF;
+  --text-primary: #FFFFFF;
+  --text-secondary: #E8E8E8;
+  --accent: #3682F6;
+  --accent-glow: rgba(54, 130, 246, 0.25);
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+}
+
+body {
+  background-color: #0A0A0A;
+  color: #FFFFFF;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  overflow-x: hidden;
+  selection-background-color: #3682F6;
+}
+
+::selection {
+  background: #3682F6;
+  color: #ffffff;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0A0A0A;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2D2D2D;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3682F6;
+}
+
+/* Subtle background grid pattern */
+.bg-grid-pattern {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+.bg-dot-pattern {
+  background-size: 24px 24px;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+}
+
+/* Glassmorphism */
+.glass-panel {
+  background: rgba(26, 26, 26, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-panel-hover {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-panel-hover:hover {
+  border-color: rgba(54, 130, 246, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px -10px rgba(54, 130, 246, 0.2);
+}
+
+/* Electric Blue text gradients */
+.text-gradient-blue,
+.text-gradient-blue {
+  background: linear-gradient(135deg, #FFFFFF 40%, #3682F6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-white {
+  background: linear-gradient(180deg, #FFFFFF 60%, rgba(232, 232, 232, 0.7) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
